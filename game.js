@@ -1,10 +1,18 @@
 function rollDice() {
-  const dice = [...document.querySelectorAll(".die-list")];
-  dice.forEach(die => {
-    toggleClasses(die);
-    die.dataset.roll = 2;
-  });
+  window.parent.postMessage({type: 'gameMessage', action: 'play'}, '*');
 }
+
+window.addEventListener("message", (event) => {
+  if(event.data.data.gameResult) {
+    const dice = [...document.querySelectorAll(".die-list")];
+    let counter = 0;
+    dice.forEach(die => {
+      toggleClasses(die);
+      die.dataset.roll = event.data.data.gameResult[counter];
+      counter++;
+    });
+  }
+}, false);
 
 function toggleClasses(die) {
   die.classList.toggle("odd-roll");
