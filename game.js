@@ -1,5 +1,10 @@
+rollEnabled = true
+
 function rollDice() {
-  window.parent.postMessage({type: 'gameMessage', action: 'play'}, '*');
+  if(rollEnabled) {
+    window.parent.postMessage({type: 'gameMessage', action: 'play'}, '*');
+    rollEnabled = false;
+  }
 }
 
 window.addEventListener("message", (event) => {
@@ -11,6 +16,12 @@ window.addEventListener("message", (event) => {
       die.dataset.roll = event.data.data.result[counter];
       counter++;
     });
+    setTimeout(function(){ 
+      alert("You Earned: " + event.data.data.points + "\r\n " + event.data.data.remainingNumber + event.data.data.remainingMessage); 
+      if (event.data.data.remainingNumber > 0) {
+        rollEnabled = true
+      }
+    }, 3000);
   }
 }, false);
 

@@ -197,6 +197,11 @@ button:hover {
   cursor: pointer;
 }
 
+.disabled {
+  text-decoration: line-through;
+  background-color: darkred;
+}
+
 @media (min-width: 900px) {
   .dice {
     perspective: 1300px;
