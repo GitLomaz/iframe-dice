@@ -21,7 +21,7 @@ window.addEventListener("message", (event) => {
       if (event.data.data.remainingNumber > 0) {
         rollEnabled = true
       }
-    }, 3000);
+    }, 1200);
   }
 }, false);
 
