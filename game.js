@@ -3,12 +3,12 @@ function rollDice() {
 }
 
 window.addEventListener("message", (event) => {
-  if(event.data.data.gameResult) {
+  if(event.data.data.result) {
     const dice = [...document.querySelectorAll(".die-list")];
     let counter = 0;
     dice.forEach(die => {
       toggleClasses(die);
-      die.dataset.roll = event.data.data.gameResult[counter];
+      die.dataset.roll = event.data.data.result[counter];
       counter++;
     });
   }
