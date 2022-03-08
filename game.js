@@ -8,6 +8,7 @@ function rollDice() {
 }
 
 window.addEventListener("message", (event) => {
+  console.log(event.data)
   if(event.data.data.result) {
     const dice = [...document.querySelectorAll(".die-list")];
     let counter = 0;
@@ -31,3 +32,4 @@ function toggleClasses(die) {
 }
 
 document.getElementById("roll-button").addEventListener("click", rollDice);
+window.parent.postMessage({type: 'gameMessage', action: 'getConfiguration'}, '*');
